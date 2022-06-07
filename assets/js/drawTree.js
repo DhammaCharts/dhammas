@@ -100,7 +100,7 @@ treeDoc.on('select', e => {
 const crumb = pathWindow.split("/");
 const crumbNoBase = crumb.splice(2,crumb.length-3)
 
-// the function below is an infinit loop...
+// the function below is an infinit loop !!!
 // treeDoc.browse(a => {
 //   if (crumbNoBase.includes(a.innerHTML.replace(' ','-'))) {
 //     // if (a.node.name.startsWith('folder 1') || a.node.name === 'file 1/1/1/1/2') {
