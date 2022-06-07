@@ -110,12 +110,14 @@ const crumbNoBase = crumb.splice(2,crumb.length-3)
 // });
 
 document.getElementById('browse').addEventListener('click', () => {
+
   treeDoc.browse(a => {
-    if (crumbNoBase.includes(a.innerHTML.replace(' ','-'))) {
-      // if (a.node.name.startsWith('folder 1') || a.node.name === 'file 1/1/1/1/2') {
-      return true;
-    }
-    return false;
+    // array.includes() doesn't work in this loop !
+    let test = false
+    crumbNoBase.forEach(d => {
+      if (d == a.innerHTML.replace(/ /g,'-'))  test = true;
+    })
+    return test
   });
 });
 
