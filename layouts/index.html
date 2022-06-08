@@ -6,7 +6,7 @@
   {{partial "search.html" .}}
   <!-- Start layout -->
   <r-c join>
-      <main data-lg1-2 class="singlePage">
+      <main data-lg1-2 data-lg2 data-m2 data-sm1 data-xs1 class="singlePage">
         <header>
           <h1>{{if .Title}}{{ .Title }}{{else}}Untitled{{end}}</h1>
           <svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg>
@@ -21,7 +21,7 @@
           {{end}}
         </article>
       </main>
-      <aside data-md1-2 data-lg1-4 data-lg1>
+      <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg1 data-m1 data-sm2 data-xs3>
         <div class="sticky page-end">
           <h3> Menu </h3>
           <div id="tree"></div>
@@ -35,7 +35,7 @@
           <div id="tree"></div> -->
         </div>
       </aside>
-      <aside data-md1-2 data-lg1-4>
+      <aside data-sm1-2 data-md1-2 data-lg1-4 data-lg3 data-m3 data-sm3 data-xs2>
         <div class="sticky">
           {{partial "footer.html" .}}
         </div>
