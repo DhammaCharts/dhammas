@@ -102,11 +102,18 @@
 /* select tree */
 .select-tree .selected {
   // background-color: #beebff;
-  // border-color: #99defd;
+  border: var(--outlinegray)1px solid;
+  border-radius: 5px;
   // z-index: 1;
 }
 
 .select-tree.dark .selected {
   // background-color: #3a484e;
-  // border-color: #99defd;
+  border-color: #99defd;
+  border-radius: 5px;
+}
+
+.selectedOnPage {
+  // background-color: #3a484e;
+  border-color: #99defd;
 }

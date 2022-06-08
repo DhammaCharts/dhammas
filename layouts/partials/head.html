@@ -67,14 +67,18 @@
           content,
         }))
 
+    const siteBaseURL = new URL({{$.Site.BaseURL}});
+    const pathBase = siteBaseURL.pathname;
+    const pathWindow = window.location.pathname;
+    const isHome = pathBase == pathWindow;
+
     const draw = () => {
 
-      const siteBaseURL = new URL({{$.Site.BaseURL}});
-      const pathBase = siteBaseURL.pathname;
-      const pathWindow = window.location.pathname;
-      const isHome = pathBase == pathWindow;
+      // var treeDoc = new Tree(document.getElementById('tree'), {
+      //   // navigate: true // allow navigate with ArrowUp and ArrowDown
+      // });
+      // // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
 
-      // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page.
       {{if $.Site.Data.config.enableFooter}}
       const container = document.getElementById("graph-container")
       // retry if the graph is not ready
@@ -98,9 +102,19 @@
         );
       }
 
-      drawTree(pathBase, pathWindow);
-
       {{end}}
+
+          // // the function below is an infinit loop !!!
+          // treeDoc.browse(a => {
+          //   // array.includes() doesn't work in this loop !
+          //   let test = false
+          //   crumbNoBase.forEach(d => {
+          //     if (d == a.innerHTML.replace(/ /g,'-'))  test = true;
+          //   })
+          //   console.log(test);
+          //   return test
+          // });
+
       {{if $.Site.Data.config.enableLinkPreview}}
       initPopover(
         {{strings.TrimRight "/" .Site.BaseURL }},
@@ -116,8 +130,6 @@
         ],
         throwOnError : false
       });
-
-
 
       {{end}}
     };

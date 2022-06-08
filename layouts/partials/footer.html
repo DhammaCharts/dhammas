@@ -8,4 +8,546 @@
     </div>
 
 </div>
+
+<script type="text/javascript">
+
+  /* globals Tree */
+  'use strict';
+
+  var tree = new Tree(document.getElementById('tree'), {
+    navigate: true // allow navigate with ArrowUp and ArrowDown
+  });
+  // tree.on('open', e => console.log('open', e));
+  // tree.on('select', e => console.log('select', e));
+  // tree.on('action', e => console.log('action', e));
+  // tree.on('fetch', e => console.log('fetch', e));
+  // tree.on('browse', e => console.log('browse', e));
+
+  var structure = [
+      {
+          "id": "_3-Feelings_",
+          "parentId": "_ROOT_",
+          "name": "3 Feelings",
+          "type": "folder",
+          "level": 1,
+          "children": [
+              {
+                  "id": "3-Feelings",
+                  "parentId": "_3-Feelings_",
+                  "name": "Feeling",
+                  "type": "page",
+                  "href": "/dhammas/3-Feelings/3-Feelings"
+              },
+              {
+                  "id": "Neutral",
+                  "parentId": "_3-Feelings_",
+                  "name": "Neutral",
+                  "type": "page",
+                  "href": "/dhammas/3-Feelings/Neutral"
+              },
+              {
+                  "id": "Painful",
+                  "parentId": "_3-Feelings_",
+                  "name": "Painful",
+                  "type": "page",
+                  "href": "/dhammas/3-Feelings/Painful"
+              },
+              {
+                  "id": "Pleasant",
+                  "parentId": "_3-Feelings_",
+                  "name": "Pleasant",
+                  "type": "page",
+                  "href": "/dhammas/3-Feelings/Pleasant"
+              }
+          ]
+      },
+      {
+          "id": "_3-Fold-Refuges-Triple-Gem_",
+          "parentId": "_ROOT_",
+          "name": "3 Fold Refuges Triple Gem",
+          "type": "folder",
+          "level": 1,
+          "children": [
+              {
+                  "id": "3-Fold-Refuges",
+                  "parentId": "_3-Fold-Refuges-Triple-Gem_",
+                  "name": "3-Fold Refuges",
+                  "type": "page",
+                  "href": "/dhammas/3-Fold-Refuges-Triple-Gem/3-Fold-Refuges"
+              },
+              {
+                  "id": "Buddha",
+                  "parentId": "_3-Fold-Refuges-Triple-Gem_",
+                  "name": "Buddha",
+                  "type": "page",
+                  "href": "/dhammas/3-Fold-Refuges-Triple-Gem/Buddha"
+              },
+              {
+                  "id": "Dhamma",
+                  "parentId": "_3-Fold-Refuges-Triple-Gem_",
+                  "name": "Dhamma",
+                  "type": "page",
+                  "href": "/dhammas/3-Fold-Refuges-Triple-Gem/Dhamma"
+              },
+              {
+                  "id": "Sangha",
+                  "parentId": "_3-Fold-Refuges-Triple-Gem_",
+                  "name": "Sangha",
+                  "type": "page",
+                  "href": "/dhammas/3-Fold-Refuges-Triple-Gem/Sangha"
+              }
+          ]
+      },
+      {
+          "id": "_3-Kammas_",
+          "parentId": "_ROOT_",
+          "name": "3 Kammas",
+          "type": "folder",
+          "level": 1,
+          "children": [
+              {
+                  "id": "3-Kammas",
+                  "parentId": "_3-Kammas_",
+                  "name": "Kamma",
+                  "type": "page",
+                  "href": "/dhammas/3-Kammas/3-Kammas"
+              },
+              {
+                  "id": "Body-action",
+                  "parentId": "_3-Kammas_",
+                  "name": "Body action",
+                  "type": "page",
+                  "href": "/dhammas/3-Kammas/Body-action"
+              },
+              {
+                  "id": "Mental-action",
+                  "parentId": "_3-Kammas_",
+                  "name": "Mental action",
+                  "type": "page",
+                  "href": "/dhammas/3-Kammas/Mental-action"
+              },
+              {
+                  "id": "Verbal-action",
+                  "parentId": "_3-Kammas_",
+                  "name": "Verbal action",
+                  "type": "page",
+                  "href": "/dhammas/3-Kammas/Verbal-action"
+              }
+          ]
+      },
+      {
+          "id": "_3-Merits_",
+          "parentId": "_ROOT_",
+          "name": "3 Merits",
+          "type": "folder",
+          "level": 1,
+          "children": [
+              {
+                  "id": "3-Merits",
+                  "parentId": "_3-Merits_",
+                  "name": "3 Merits",
+                  "type": "page",
+                  "href": "/dhammas/3-Merits/3-Merits"
+              },
+              {
+                  "id": "Giving",
+                  "parentId": "_3-Merits_",
+                  "name": "Giving",
+                  "type": "page",
+                  "href": "/dhammas/3-Merits/Giving"
+              },
+              {
+                  "id": "Mental-Development",
+                  "parentId": "_3-Merits_",
+                  "name": "Mental Development",
+                  "type": "page",
+                  "href": "/dhammas/3-Merits/Mental-Development"
+              },
+              {
+                  "id": "Virtue",
+                  "parentId": "_3-Merits_",
+                  "name": "Virtue",
+                  "type": "page",
+                  "href": "/dhammas/3-Merits/Virtue"
+              }
+          ]
+      },
+      {
+          "id": "_4-Noble-Truths_",
+          "parentId": "_ROOT_",
+          "name": "4 Noble Truths",
+          "type": "folder",
+          "level": 1,
+          "children": [
+              {
+                  "id": "4-Noble-Truths",
+                  "parentId": "_4-Noble-Truths_",
+                  "name": "4 Noble Truths",
+                  "type": "page",
+                  "href": "/dhammas/4-Noble-Truths/4-Noble-Truths"
+              },
+              {
+                  "id": "Cessation",
+                  "parentId": "_4-Noble-Truths_",
+                  "name": "Cessation of Suffering",
+                  "type": "page",
+                  "href": "/dhammas/4-Noble-Truths/Cessation"
+              },
+              {
+                  "id": "Origin",
+                  "parentId": "_4-Noble-Truths_",
+                  "name": "Origin of Suffering",
+                  "type": "page",
+                  "href": "/dhammas/4-Noble-Truths/Origin"
+              },
+              {
+                  "id": "Suffering",
+                  "parentId": "_4-Noble-Truths_",
+                  "name": "Suffering",
+                  "type": "page",
+                  "href": "/dhammas/4-Noble-Truths/Suffering"
+              }
+          ]
+      },
+      {
+          "id": "_4-Sights_",
+          "parentId": "_ROOT_",
+          "name": "4 Sights",
+          "type": "folder",
+          "level": 1,
+          "children": [
+              {
+                  "id": "4-Sights",
+                  "parentId": "_4-Sights_",
+                  "name": "4 Sights",
+                  "type": "page",
+                  "href": "/dhammas/4-Sights/4-Sights"
+              }
+          ]
+      },
+      {
+          "id": "_5-Aggragates_",
+          "parentId": "_ROOT_",
+          "name": "5 Aggragates",
+          "type": "folder",
+          "level": 1,
+          "children": [
+              {
+                  "id": "5-Aggragates",
+                  "parentId": "_5-Aggragates_",
+                  "name": "5 Aggragates",
+                  "type": "page",
+                  "href": "/dhammas/5-Aggragates/5-Aggragates"
+              },
+              {
+                  "id": "Consciouness",
+                  "parentId": "_5-Aggragates_",
+                  "name": "Consciouness",
+                  "type": "page",
+                  "href": "/dhammas/5-Aggragates/Consciouness"
+              },
+              {
+                  "id": "Form",
+                  "parentId": "_5-Aggragates_",
+                  "name": "Form",
+                  "type": "page",
+                  "href": "/dhammas/5-Aggragates/Form"
+              },
+              {
+                  "id": "Formations",
+                  "parentId": "_5-Aggragates_",
+                  "name": "Formations",
+                  "type": "page",
+                  "href": "/dhammas/5-Aggragates/Formations"
+              },
+              {
+                  "id": "Perception",
+                  "parentId": "_5-Aggragates_",
+                  "name": "Perception",
+                  "type": "page",
+                  "href": "/dhammas/5-Aggragates/Perception"
+              }
+          ]
+      },
+      {
+          "id": "_6-Gradual-Trainings_",
+          "parentId": "_ROOT_",
+          "name": "6 Gradual Trainings",
+          "type": "folder",
+          "level": 1,
+          "children": [
+              {
+                  "id": "6-Graduals-Trainings",
+                  "parentId": "_6-Gradual-Trainings_",
+                  "name": "6 Graduals Trainings",
+                  "type": "page",
+                  "href": "/dhammas/6-Gradual-Trainings/6-Graduals-Trainings"
+              },
+              {
+                  "id": "Drawbacks",
+                  "parentId": "_6-Gradual-Trainings_",
+                  "name": "Drawbacks",
+                  "type": "page",
+                  "href": "/dhammas/6-Gradual-Trainings/Drawbacks"
+              },
+              {
+                  "id": "Generosity",
+                  "parentId": "_6-Gradual-Trainings_",
+                  "name": "Generosity",
+                  "type": "page",
+                  "href": "/dhammas/6-Gradual-Trainings/Generosity"
+              },
+              {
+                  "id": "Heaven",
+                  "parentId": "_6-Gradual-Trainings_",
+                  "name": "Heaven",
+                  "type": "page",
+                  "href": "/dhammas/6-Gradual-Trainings/Heaven"
+              },
+              {
+                  "id": "Renunciation",
+                  "parentId": "_6-Gradual-Trainings_",
+                  "name": "Renunciation",
+                  "type": "page",
+                  "href": "/dhammas/6-Gradual-Trainings/Renunciation"
+              },
+              {
+                  "id": "Virtue",
+                  "parentId": "_6-Gradual-Trainings_",
+                  "name": "Virtue",
+                  "type": "page",
+                  "href": "/dhammas/6-Gradual-Trainings/Virtue"
+              }
+          ]
+      },
+      {
+          "id": "_8-Fold-Path_",
+          "parentId": "_ROOT_",
+          "name": "8 Fold Path",
+          "type": "folder",
+          "level": 1,
+          "children": [
+              {
+                  "id": "_2-Right-View_",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "2 Right View",
+                  "type": "folder",
+                  "level": 2,
+                  "children": [
+                      {
+                          "id": "view",
+                          "parentId": "_2-Right-View_",
+                          "name": "view",
+                          "type": "page",
+                          "href": "/dhammas/8-Fold-Path/2-Right-View/view"
+                      }
+                  ]
+              },
+              {
+                  "id": "_2-Right-actions_",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "2 Right actions",
+                  "type": "folder",
+                  "level": 2,
+                  "children": [
+                      {
+                          "id": "_2-Actions_",
+                          "parentId": "_2-Right-actions_",
+                          "name": "2 Actions",
+                          "type": "folder",
+                          "level": 3,
+                          "children": [
+                              {
+                                  "id": "actions",
+                                  "parentId": "_2-Actions_",
+                                  "name": "actions",
+                                  "type": "page",
+                                  "href": "/dhammas/8-Fold-Path/2-Right-actions/2-Actions/actions"
+                              }
+                          ]
+                      },
+                      {
+                          "id": "empty",
+                          "parentId": "_2-Right-actions_",
+                          "name": "empty",
+                          "type": "page",
+                          "href": "/dhammas/8-Fold-Path/2-Right-actions/empty"
+                      }
+                  ]
+              },
+              {
+                  "id": "8-Fold-Path",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "8-Fold Noble Path",
+                  "type": "page",
+                  "href": "/dhammas/8-Fold-Path/8-Fold-Path"
+              },
+              {
+                  "id": "Right-Action",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "Right Action",
+                  "type": "page",
+                  "href": "/dhammas/8-Fold-Path/Right-Action"
+              },
+              {
+                  "id": "Right-Concentration",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "Right Concentration",
+                  "type": "page",
+                  "href": "/dhammas/8-Fold-Path/Right-Concentration"
+              },
+              {
+                  "id": "Right-Effort",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "Right Effort",
+                  "type": "page",
+                  "href": "/dhammas/8-Fold-Path/Right-Effort"
+              },
+              {
+                  "id": "Right-Intention",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "Right Intention",
+                  "type": "page",
+                  "href": "/dhammas/8-Fold-Path/Right-Intention"
+              },
+              {
+                  "id": "Right-Livelyhood",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "Right Livelyhood",
+                  "type": "page",
+                  "href": "/dhammas/8-Fold-Path/Right-Livelyhood"
+              },
+              {
+                  "id": "Right-Mindfulness",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "Right Mindfulness",
+                  "type": "page",
+                  "href": "/dhammas/8-Fold-Path/Right-Mindfulness"
+              },
+              {
+                  "id": "Right-Speech",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "Right Speech",
+                  "type": "page",
+                  "href": "/dhammas/8-Fold-Path/Right-Speech"
+              },
+              {
+                  "id": "Right-View",
+                  "parentId": "_8-Fold-Path_",
+                  "name": "Right View",
+                  "type": "page",
+                  "href": "/dhammas/8-Fold-Path/Right-View"
+              }
+          ]
+      },
+      {
+          "id": "Untitled",
+          "parentId": "_ROOT_",
+          "name": "Untitled",
+          "type": "page",
+          "href": "/dhammas/Untitled"
+      },
+      {
+          "id": "sources",
+          "parentId": "_ROOT_",
+          "name": "Sources",
+          "type": "page",
+          "href": "/dhammas/sources"
+      },
+      {
+          "id": "test",
+          "parentId": "_ROOT_",
+          "name": "test",
+          "type": "page",
+          "href": "/dhammas/test"
+      }
+  ];
+  // keep track of the original node objects
+  tree.on('created', (e, node) => {
+    e.node = node;
+  });
+  tree.json(structure);
+
+
+  const crumb = pathWindow.split("/");
+  const crumbNoBase = crumb.splice(2,crumb.length-3)
+
+  for (let i = 0 ; i < crumbNoBase.length - 1 ; i ++)
+  {
+    crumbNoBase[i] = '_'+crumbNoBase[i]+'_'
+  }
+
+  // document.getElementById('browse').addEventListener('click', () => {
+  //   tree.browse(a => {
+  //     if (a.node.name.replace(/ /g,'-') === crumbNoBase[0]) {
+  //       return true;
+  //     }
+  //     return false;
+  //   });
+  // });
+
+  // console.log(crumbNoBase);
+
+
+    tree.browse(a => {
+      if(crumbNoBase.indexOf(a.node.id) !== -1) {
+          return true;
+      }
+      return false
+    });
+
+    // tree.browse(a => true)
+
+    // console.log(tree)
+
+    tree.on('select', e => {
+      if (e.tagName === 'SUMMARY') {
+        tree.open(e.parentElement);
+      }
+    });
+
+    // click on node go to page
+    // tree.on('select', e => {
+    //   if (e.tagName === 'A') window.location.href = e.node.href;
+    // });
+
+    let timeout;
+
+    // const navigate = href => location.replace(href);
+    // tree.on('select', e => {
+    //   if (e.tagName === 'A') {
+    //     clearTimeout(timeout);
+    //     timeout = setTimeout(navigate, 1000, e.node.href);
+    //   }
+    // });
+
+    function openTree(){
+          var p = new Promise(function(success) {
+            // open the tree at the current page
+            tree.browse(a => {
+              if(crumbNoBase.indexOf(a.node.id) !== -1) {
+                  return true;
+              }
+              return false
+            });
+            success();
+          });
+        return p;
+    }
+
+    function redirectOnClick(){
+        let p = openTree();
+        p.then(function(s) {
+          // click on node to go to page
+          tree.on('select', e => {
+            if (  e.node.type     == 'page'
+              &&  e.node.href+'/' != pathWindow)
+              window.location.href = e.node.href;
+          });
+        });
+    }
+
+    redirectOnClick()
+
+</script>
 {{end}}
