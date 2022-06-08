@@ -6,7 +6,9 @@ const { content } = await fetchData;
 
 // this is for the tree display on page
 var treeDoc = new Tree(document.getElementById('tree'), {
-  navigate: true // allow navigate with ArrowUp and ArrowDown
+  dark: true
+
+  // navigate: true // allow navigate with ArrowUp and ArrowDown
 });
 
 // we want to build an array of objects, one for each page and folder (type)
@@ -91,6 +93,13 @@ tree.forEach((el) => {
 const structure = root.children
 treeDoc.json(structure);
 
+// keep track of the original node objects
+// treeDoc.on('created', (e, node) => {
+//   console.log(e)
+//   console.log(node)
+//   e.node = node;
+// });
+
 // click on node go to page
 treeDoc.on('select', e => {
   if (e.getAttribute('href')) window.location.assign(e.getAttribute('href'))
@@ -101,25 +110,31 @@ const crumb = pathWindow.split("/");
 const crumbNoBase = crumb.splice(2,crumb.length-3)
 
 // the function below is an infinit loop !!!
-// treeDoc.browse(a => {
-//   if (crumbNoBase.includes(a.innerHTML.replace(' ','-'))) {
-//     // if (a.node.name.startsWith('folder 1') || a.node.name === 'file 1/1/1/1/2') {
-//     return true;
-//   }
-//   return false;
-// });
-
-document.getElementById('browse').addEventListener('click', () => {
-
-  treeDoc.browse(a => {
-    // array.includes() doesn't work in this loop !
-    let test = false
-    crumbNoBase.forEach(d => {
-      if (d == a.innerHTML.replace(/ /g,'-'))  test = true;
-    })
-    return test
-  });
+treeDoc.browse(a => {
+  //array.includes() //doesn't work in this loop !
+  let test = false
+  crumbNoBase.forEach(d => {
+    if (d == a.innerHTML.replace(/ /g,'-'))  test = true;
+  })
+  return test
 });
+
+
+
+// document.getElementById('browse').addEventListener('click', () => {
+//
+//   treeDoc.browse(a => {
+//     // array.includes() doesn't work in this loop !
+//     let test = false
+//     crumbNoBase.forEach(d => {
+//       if (d == a.innerHTML.replace(/ /g,'-'))  test = true;
+//     })
+//     setTimeout(() => {  console.log("World!"); }, 1000);
+//     return true
+//   });
+//
+//
+// });
 
 // other calls :
 // treeDoc.on('action', e => console.log('action', e));
