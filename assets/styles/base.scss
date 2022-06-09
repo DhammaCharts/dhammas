@@ -638,7 +638,6 @@ header {
   padding: 1em;
   border: 1px solid var(--outlinegray);
   border-radius: 5px;
-  transform: translate(15%, 5%);
 
   // pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease;
@@ -646,11 +645,14 @@ header {
   overflow-wrap: anywhere;
   box-shadow: 6px 6px 36px 0px rgba(0,0,0,0.25);
 
-  @media all and (min-width: 1200px) {
+  @media all and (min-width: 1200px){
     transform: translate(-75%, 30%);
   }
-  @media all and (min-width: 900px) {
+  @media all and (min-width: 900px)  and (max-width: 1199px) {
     transform: translate(-40%, 5%);
+  }
+  @media all and (max-width: 899px) {
+    transform: translate(15%, 5%);
   }
 }
 
