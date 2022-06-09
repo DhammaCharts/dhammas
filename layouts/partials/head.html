@@ -38,6 +38,15 @@
   resources.Minify }}
   <script src="{{$popover.Permalink}}"></script>
 
+  <script
+    src="https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js"
+    integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI="
+    crossorigin="anonymous"
+  ></script>
+
+{{ $js := resources.Get "js/graph.js" | resources.Fingerprint "md5" }}
+<script src="{{ $js.Permalink }}"></script>
+
   {{ $tree := resources.Get "js/tree.js" | resources.Fingerprint "md5" }}
   <script src="{{ $tree.Permalink }}"></script>
 
@@ -89,18 +98,32 @@
       if (isHome && {{$.Site.Data.graphConfig.enableGlobalGraph}}) {
         drawGraph(
           {{strings.TrimRight "/" .Site.BaseURL}},
-          true,
+          500,
           {{$.Site.Data.graphConfig.paths}},
           {{$.Site.Data.graphConfig.globalGraph}}
         );
       } else {
         drawGraph(
           {{strings.TrimRight "/" .Site.BaseURL}},
-          false,
+          250,
           {{$.Site.Data.graphConfig.paths}},
           {{$.Site.Data.graphConfig.localGraph}}
         );
       }
+
+      // const containerPopup = document.getElementById("graph-container-popup")
+      // // retry if the graph is not ready
+      // if (!containerPopup) return requestAnimationFrame(draw)
+      // // clear the graph in case there is anything within it
+      // containerPopup.textContent = ""
+
+      drawGraph(
+        {{strings.TrimRight "/" .Site.BaseURL}},
+        500,
+        {{$.Site.Data.graphConfig.paths}},
+        {{$.Site.Data.graphConfig.globalGraph}},
+        true
+      );
 
       {{end}}
 
