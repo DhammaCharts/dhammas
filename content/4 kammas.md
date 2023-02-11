@@ -1,3 +1,8 @@
+---
+title: "4 Kammas"
+tags: path
+---
+
 Four kinds of kamma: 
 
 1. There is dark kamma with dark ripening 

@@ -1,4 +1,3 @@
-
 ---
 title: "11 obstructions"
 tags: 

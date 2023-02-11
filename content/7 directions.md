@@ -1,3 +1,8 @@
+---
+title: "7 Directions"
+tags: cessation
+---
+
 The seven directions of loving-kindness meditation / prayer: 1. Yourself 
 2. Parents and/or children 
 3. Teachers 

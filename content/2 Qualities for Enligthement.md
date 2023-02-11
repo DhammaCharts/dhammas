@@ -1,3 +1,8 @@
+---
+title: "2 Qualities for Enlogthement"
+tags: path
+---
+
 Monks, I have known two dhammas through experience: 
 
 1. discontent with regard to skillful dhammas and 
