@@ -1,0 +1,6 @@
+---
+aliases:
+  - āsavakkhaya
+items:
+  - "[[Effluents]]"
+---

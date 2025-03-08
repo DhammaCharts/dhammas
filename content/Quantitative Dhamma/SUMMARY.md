@@ -1,0 +1,49 @@
+- [[Quatitative Dhamma]]
+- [[Introduction]]
+	- [[A Simple Set]]
+	- [[Data Format]]
+		- Obscidian
+		- Folder & Symlink
+		- Spreadsheet
+		- Bullet list
+- Representation
+	- Source/Original/Prime Graph
+		- Matrix: Concept vs Sets
+		- Tree
+			- Vertical
+			- Diagonal
+		- Cycles Analysis
+		- Adjacent List (related to tree)
+		- Force Directed
+			- Stronger w for concept
+			- Different style for edges of set or concept
+			- Concept disapear
+			- Set Disapear
+		- Arc (on top)
+		- Edge Bundling
+			- Concept only on edge?
+			- Arc inside
+		- Set Only? (hide the concept linking)
+		- Expanding Graph
+	- [[Recursive Graph]]
+		- Column (from root)
+		- Force Directed Graph
+		- Tidy Tree
+			- Horizontal
+			- Radial
+		- Dendrogram 
+			- Concept only on edge
+			- multi edge?
+	- Orbit: Cycle and Path (string) Analysis
+		- Shortest Repetition
+		- No Repetition
+		- Longest Chain Without Repetition
+		- Path from String
+			- Closed Cycle (repeter)
+			- connected repeter
+			- Finit String
+			- string + sub-cycle
+			- Infinit
+- [[References]]
+- Contracted Set Node 
+	- items listed below

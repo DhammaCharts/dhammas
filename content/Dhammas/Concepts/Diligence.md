@@ -1,0 +1,6 @@
+---
+aliases:
+  - Appamāda
+tags:
+  - path
+---

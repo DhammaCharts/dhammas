@@ -1,0 +1,6 @@
+---
+aliases:
+  - Pathavī
+tags:
+  - suffering
+---

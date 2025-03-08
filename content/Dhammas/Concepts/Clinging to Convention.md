@@ -1,0 +1,4 @@
+---
+aliases:
+  - sīlabbata-parāmāsa
+---
