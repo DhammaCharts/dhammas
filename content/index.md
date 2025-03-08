@@ -1,3 +1,7 @@
+---
+title: Dhamma Bible
+---
+
 ### Notes
 
 - Synonyme for bible
