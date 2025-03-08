@@ -6,3 +6,23 @@
 //  display: block;
 //  text-align: center;
 // }
+
+.katex {
+ display: inline; /* Ensure inline math stays inline */
+}
+
+/* Center KaTeX expressions that are the only element in their line */
+.katex:only-child {
+ display: block;
+ text-align: center;
+}
+
+/* Alternative approach: Target KaTeX spans that are direct children of block elements */
+// p > .katex, div > .katex {
+//  display: inline; /* Ensure inline math stays inline */
+// }
+
+// p > br + .katex, div > br + .katex {
+//  display: block;
+//  text-align: center;
+// }
