@@ -18,7 +18,7 @@ $Sets$ contain $items$ (mostly $concepts$ and sometimes other $sets$) and repres
 $$item_{1}, item_{2}, item_{3}, ...  \in set_\mu$$  
 and then can be represented by a graph:  
   
-We can build a simple hierarchial (H) reationship between the set and its items:  
+We can build a simple hierarchical (H) relationship between the set and its items:  
 
 $$ \begin{cases} set_\mu \to item_{1} \\ set_\mu \to item_{2} \\ set_\mu \to item_{3}  \\ ...\end{cases}$$  
 $$\text{or}$$  
