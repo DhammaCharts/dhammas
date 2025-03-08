@@ -97,5 +97,3 @@ See Notebook for tentative script of level generated tidy tree or dedrogram.
 
 ## Chart
 ![[DhammasChart1_13 1.png]]
-
-kkk
