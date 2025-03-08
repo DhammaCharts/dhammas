@@ -2,7 +2,7 @@
 - [[Introduction]]
 	- [[A Simple Set]]
 	- [[Data Format]]
-		- Obscidian
+		- Obsidian
 		- Folder & Symlink
 		- Spreadsheet
 		- Bullet list
@@ -17,8 +17,8 @@
 		- Force Directed
 			- Stronger w for concept
 			- Different style for edges of set or concept
-			- Concept disapear
-			- Set Disapear
+			- Concept disappear
+			- Set Disappear
 		- Arc (on top)
 		- Edge Bundling
 			- Concept only on edge?
@@ -39,11 +39,11 @@
 		- No Repetition
 		- Longest Chain Without Repetition
 		- Path from String
-			- Closed Cycle (repeter)
-			- connected repeter
-			- Finit String
+			- Closed Cycle (repeater)
+			- connected repeater
+			- Finite String
 			- string + sub-cycle
-			- Infinit
+			- Infinite
 - [[References]]
 - Contracted Set Node 
 	- items listed below
