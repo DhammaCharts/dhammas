@@ -43,6 +43,10 @@ These are set in the front matter of the md file:
 		- Appear only in the commentarial literature
 - items: list all the items of the "set" node (as link to nodes). This is only the direct child of the node. Other mentions or relations (parent, etc.) can appear as outgoing link from the content.  Items should be kept as short and simple as possible referring to one unique Pali translation.
 
+This is an example
+
+![[Pasted image 20250309182213.png]]
+
 Properties below are actually equivalent to items, because sets and nodes are not that different.
 - relates: node ==relates== to other nodes (used items ?)
 - conditions: node ==conditiones== other nodes (use items ?)
