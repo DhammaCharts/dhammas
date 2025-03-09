@@ -31,7 +31,7 @@ export interface Options {
   wikilinks: boolean
   callouts: boolean
   mermaid: boolean
-  parseTags: boolean
+  parseTags: boolean | "link-only"
   parseArrows: boolean
   parseBlockReferences: boolean
   enableInHtmlEmbed: boolean
@@ -156,12 +156,20 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
     textTransform(_ctx, src) {
       // do comments at text level
       if (opts.comments) {
-        src = src.replace(commentRegex, "")
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
+
+        src = (src as string).replace(commentRegex, "")
       }
 
       // pre-transform blockquotes
       if (opts.callouts) {
-        src = src.replace(calloutLineRegex, (value) => {
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
+
+        src = (src as string).replace(calloutLineRegex, (value) => {
           // force newline after title of callout
           return value + "\n> "
         })
@@ -169,8 +177,12 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
 
       // pre-transform wikilinks (fix anchors to things that may contain illegal syntax e.g. codeblocks, latex)
       if (opts.wikilinks) {
+        if (src instanceof Buffer) {
+          src = src.toString()
+        }
+
         // replace all wikilinks inside a table first
-        src = src.replace(tableRegex, (value) => {
+        src = (src as string).replace(tableRegex, (value) => {
           // escape all aliases and headers in wikilinks inside a table
           return value.replace(tableWikilinkRegex, (_value, raw) => {
             // const [raw]: (string | undefined)[] = capture
@@ -184,7 +196,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
         })
 
         // replace all other wikilinks
-        src = src.replace(wikilinkRegex, (value, ...capture) => {
+        src = (src as string).replace(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
           const [fp, anchor] = splitAnchor(`${rawFp ?? ""}${rawHeader ?? ""}`)
@@ -325,15 +337,18 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                   return false
                 }
 
-                tag = slugTag(tag)
-                if (file.data.frontmatter) {
+                if (opts.parseTags != "link-only" && file.data.frontmatter) {
                   const noteTags = file.data.frontmatter.tags ?? []
                   file.data.frontmatter.tags = [...new Set([...noteTags, tag])]
+                } else {
+                  // We store the content tags so that the tagPage can be generated even
+                  // if there's no pages tagged with them through the frontmatter
+                  file.data.tagLinks = (file.data.tagLinks ?? new Set()).add(tag)
                 }
 
                 return {
                   type: "link",
-                  url: base + `/tags/${tag}`,
+                  url: `${base}/tags/${slugTag(tag)}`,
                   data: {
                     hProperties: {
                       className: ["tag-link"],
@@ -816,5 +831,6 @@ declare module "vfile" {
     blocks: Record<string, Element>
     htmlAst: HtmlRoot
     hasMermaidDiagram: boolean | undefined
+    tagLinks: Set<string>
   }
 }

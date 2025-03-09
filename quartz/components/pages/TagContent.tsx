@@ -1,12 +1,11 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "../types"
 import style from "../styles/listPage.scss"
 import { PageList, SortFn } from "../PageList"
-import { FullSlug, getAllSegmentPrefixes, simplifySlug } from "../../util/path"
+import { FullSlug, getAllSegmentPrefixes, simplifySlug, slugTag } from "../../util/path"
 import { QuartzPluginData } from "../../plugins/vfile"
 import { Root } from "hast"
 import { htmlToJsx } from "../../util/jsx"
 import { i18n } from "../../i18n"
-import { ComponentChildren } from "preact"
 
 interface TagContentOptions {
   sort?: SortFn
@@ -34,11 +33,10 @@ export default ((opts?: Partial<TagContentOptions>) => {
         (file.frontmatter?.tags ?? []).flatMap(getAllSegmentPrefixes).includes(tag),
       )
 
-    const content = (
+    const content =
       (tree as Root).children.length === 0
         ? fileData.description
         : htmlToJsx(fileData.filePath!, tree)
-    ) as ComponentChildren
     const cssClasses: string[] = fileData.frontmatter?.cssclasses ?? []
     const classes = cssClasses.join(" ")
     if (tag === "/") {
@@ -65,7 +63,8 @@ export default ((opts?: Partial<TagContentOptions>) => {
                 allFiles: pages,
               }
 
-              const contentPage = allFiles.filter((file) => file.slug === `tags/${tag}`).at(0)
+              const tagSlug = slugTag(tag)
+              const contentPage = allFiles.filter((file) => file.slug === `tags/${tagSlug}`).at(0)
 
               const root = contentPage?.htmlAst
               const content =
@@ -76,7 +75,7 @@ export default ((opts?: Partial<TagContentOptions>) => {
               return (
                 <div>
                   <h2>
-                    <a class="internal tag-link" href={`../tags/${tag}`}>
+                    <a class="internal tag-link" href={`../tags/${tagSlug}`}>
                       {tag}
                     </a>
                   </h2>

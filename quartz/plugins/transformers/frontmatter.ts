@@ -52,9 +52,9 @@ export function getAliasSlugs(aliases: string[], argv: Argv, file: VFile): FullS
   if (typeof permalink === "string") {
     slugs.push(permalink as FullSlug)
   }
-  // fix any slugs that have trailing slash
-  return slugs.map((slug) =>
-    slug.endsWith("/") ? (joinSegments(slug, "index") as FullSlug) : slug,
+  // fix any slugs that have trailing slash and make sure they are lowercase
+  return slugs.map(
+    (slug) => (slug.endsWith("/") ? joinSegments(slug, "index") : slug).toLowerCase() as FullSlug,
   )
 }
 
@@ -67,14 +67,15 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
         [remarkFrontmatter, ["yaml", "toml"]],
         () => {
           return (_, file) => {
-            const fileData = Buffer.from(file.value as Uint8Array)
-            const { data } = matter(fileData, {
+            const { data } = matter(Buffer.from(file.value), {
               ...opts,
               engines: {
                 yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object,
                 toml: (s) => toml.parse(s) as object,
               },
             })
+
+            ;(file.data as any).frontmatterRaw = structuredClone(data)
 
             if (data.title != null && data.title.toString() !== "") {
               data.title = data.title.toString()
@@ -84,10 +85,7 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
 
             const tags = coerceToArray(coalesceAliases(data, ["tags", "tag"]))
             if (tags) data.tags = [...new Set(tags.map((tag: string) => slugTag(tag)))]
-            
-            const items = coerceToArray(coalesceAliases(data, ["items", "item"]))
-            if (items) data.items = [...new Set(items.map((item: string) => slugTag(item)))]
-            
+
             const aliases = coerceToArray(coalesceAliases(data, ["aliases", "alias"]))
             if (aliases) {
               data.aliases = aliases // frontmatter
@@ -129,7 +127,6 @@ declare module "vfile" {
       title: string
     } & Partial<{
         tags: string[]
-        items: string[]
         aliases: string[]
         modified: string
         created: string
@@ -143,5 +140,6 @@ declare module "vfile" {
         socialImage: string
         comments: boolean | string
       }>
+    readonly frontmatterRaw: { readonly [key: string]: Readonly<any> }
   }
 }

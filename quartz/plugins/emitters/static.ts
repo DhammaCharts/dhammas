@@ -1,4 +1,4 @@
-import { FilePath, QUARTZ, joinSegments } from "../../util/path"
+import { FilePath, joinSegments } from "../../util/path"
 import { QuartzEmitterPlugin } from "../types"
 import fs from "fs"
 import { glob } from "../../util/glob"
@@ -6,10 +6,13 @@ import DepGraph from "../../depgraph"
 
 export const Static: QuartzEmitterPlugin = () => ({
   name: "Static",
-  async getDependencyGraph({ argv, cfg }, _content, _resources) {
+  getQuartzComponents() {
+    return []
+  },
+  async getDependencyGraph({ argv, cfg, quartzRoot }, _content, _resources) {
     const graph = new DepGraph<FilePath>()
 
-    const staticPath = joinSegments(QUARTZ, "static")
+    const staticPath = joinSegments(quartzRoot, "static")
     const fps = await glob("**", staticPath, cfg.configuration.ignorePatterns)
     for (const fp of fps) {
       graph.addEdge(
@@ -20,8 +23,8 @@ export const Static: QuartzEmitterPlugin = () => ({
 
     return graph
   },
-  async emit({ argv, cfg }, _content, _resources): Promise<FilePath[]> {
-    const staticPath = joinSegments(QUARTZ, "static")
+  async emit({ argv, cfg, quartzRoot }, _content, _resources): Promise<FilePath[]> {
+    const staticPath = joinSegments(quartzRoot, "static")
     const fps = await glob("**", staticPath, cfg.configuration.ignorePatterns)
     await fs.promises.cp(staticPath, joinSegments(argv.output, "static"), {
       recursive: true,

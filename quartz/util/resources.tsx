@@ -1,6 +1,5 @@
 import { randomUUID } from "crypto"
 import { JSX } from "preact/jsx-runtime"
-import { QuartzPluginData } from "../plugins/vfile"
 
 export type JSResource = {
   loadTime: "beforeDOMReady" | "afterDOMReady"
@@ -46,7 +45,7 @@ export function JSResourceToScriptElement(resource: JSResource, preserve?: boole
 export function CSSResourceToStyleElement(resource: CSSResource, preserve?: boolean): JSX.Element {
   const spaPreserve = preserve ?? resource.spaPreserve
   if (resource.inline ?? false) {
-    return <style>{resource.content}</style>
+    return <style dangerouslySetInnerHTML={{ __html: resource.content }} />
   } else {
     return (
       <link
@@ -63,5 +62,4 @@ export function CSSResourceToStyleElement(resource: CSSResource, preserve?: bool
 export interface StaticResources {
   css: CSSResource[]
   js: JSResource[]
-  additionalHead: (JSX.Element | ((pageData: QuartzPluginData) => JSX.Element))[]
 }

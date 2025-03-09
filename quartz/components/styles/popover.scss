@@ -24,7 +24,7 @@
     position: relative;
     width: 30rem;
     max-height: 20rem;
-    padding: 0 1rem 1rem 1rem;
+    padding: 0 1rem;
     font-weight: initial;
     font-style: initial;
     line-height: normal;
@@ -36,6 +36,10 @@
     box-shadow: 6px 6px 36px 0 rgba(0, 0, 0, 0.25);
     overflow: auto;
     white-space: normal;
+
+    & > .popover-hint > .article-title {
+      margin-top: 0.5rem;
+    }
   }
 
   & > .popover-inner[data-content-type] {

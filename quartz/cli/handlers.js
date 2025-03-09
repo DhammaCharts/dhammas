@@ -31,25 +31,18 @@ import {
   fp,
   cacheFile,
   cwd,
+  quartzRoot,
 } from "./constants.js"
-
-/**
- * Resolve content directory path
- * @param contentPath path to resolve
- */
-function resolveContentPath(contentPath) {
-  if (path.isAbsolute(contentPath)) return path.relative(cwd, contentPath)
-  return path.join(cwd, contentPath)
-}
+import { pathToFileURL } from "url"
 
 /**
  * Handles `npx quartz create`
- * @param {*} argv arguments for `create`
+ * @param {import('yargs').InferredOptionTypes<typeof CreateArgv>} argv arguments for `create`
  */
 export async function handleCreate(argv) {
   console.log()
   intro(chalk.bgGreen.black(` Quartz v${version} `))
-  const contentFolder = resolveContentPath(argv.directory)
+  const contentFolder = path.join(cwd, argv.directory)
   let setupStrategy = argv.strategy?.toLowerCase()
   let linkResolutionStrategy = argv.links?.toLowerCase()
   const sourceDirectory = argv.source
@@ -222,7 +215,7 @@ See the [documentation](https://quartz.jzhao.xyz) for how to get started.
 
 /**
  * Handles `npx quartz build`
- * @param {*} argv arguments for `build`
+ * @param {import('yargs').InferredOptionTypes<typeof import('./args').BuildArgv>} argv arguments for `build`
  */
 export async function handleBuild(argv) {
   console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
@@ -241,6 +234,12 @@ export async function handleBuild(argv) {
     metafile: true,
     sourcemap: true,
     sourcesContent: false,
+    alias: {
+      $config: path.join(cwd, "quartz.config.ts"),
+      $layout: path.join(cwd, "quartz.layout.ts"),
+      $styles: path.join(cwd, "styles.scss"),
+      quartz: path.resolve(quartzRoot, ".."),
+    },
     plugins: [
       sassPlugin({
         type: "css-text",
@@ -312,8 +311,9 @@ export async function handleBuild(argv) {
     release()
 
     if (argv.bundleInfo) {
-      const outputFileName = "quartz/.quartz-cache/transpiled-build.mjs"
-      const meta = result.metafile.outputs[outputFileName]
+      // metafile.outputs always uses /
+      const output = path.relative(cwd, cacheFile).replaceAll("\\", "/")
+      const meta = result.metafile.outputs[output]
       console.log(
         `Successfully transpiled ${Object.keys(meta.inputs).length} files (${prettyBytes(
           meta.bytes,
@@ -322,12 +322,14 @@ export async function handleBuild(argv) {
       console.log(await esbuild.analyzeMetafile(result.metafile, { color: true }))
     }
 
+    // absolute path on windows has to be a file:// url
+    const url = pathToFileURL(cacheFile)
     // bypass module cache
     // https://github.com/nodejs/modules/issues/307
-    const { default: buildQuartz } = await import(`../../${cacheFile}?update=${randomUUID()}`)
-    // ^ this import is relative, so base "cacheFile" path can't be used
+    url.searchParams.set("update", randomUUID())
+    const { default: buildQuartz } = await import(url)
 
-    cleanupBuild = await buildQuartz(argv, buildMutex, clientRefresh)
+    cleanupBuild = await buildQuartz(quartzRoot, argv, buildMutex, clientRefresh)
     clientRefresh()
   }
 
@@ -456,10 +458,10 @@ export async function handleBuild(argv) {
 
 /**
  * Handles `npx quartz update`
- * @param {*} argv arguments for `update`
+ * @param {import('yargs').InferredOptionTypes<typeof import('./args').CommonArgv>} argv arguments for `update`
  */
 export async function handleUpdate(argv) {
-  const contentFolder = resolveContentPath(argv.directory)
+  const contentFolder = path.join(cwd, argv.directory)
   console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
   console.log("Backing up your content")
   execSync(
@@ -508,19 +510,19 @@ export async function handleUpdate(argv) {
 
 /**
  * Handles `npx quartz restore`
- * @param {*} argv arguments for `restore`
+ * @param {import('yargs').InferredOptionTypes<typeof import('./args').CommonArgv>} argv arguments for `restore`
  */
 export async function handleRestore(argv) {
-  const contentFolder = resolveContentPath(argv.directory)
+  const contentFolder = path.join(cwd, argv.directory)
   await popContentFolder(contentFolder)
 }
 
 /**
  * Handles `npx quartz sync`
- * @param {*} argv arguments for `sync`
+ * @param {import('yargs').InferredOptionTypes<typeof import('./args').SyncArgv>} argv arguments for `sync`
  */
 export async function handleSync(argv) {
-  const contentFolder = resolveContentPath(argv.directory)
+  const contentFolder = path.join(cwd, argv.directory)
   console.log(chalk.bgGreen.black(`\n Quartz v${version} \n`))
   console.log("Backing up your content")
 

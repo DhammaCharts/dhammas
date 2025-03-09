@@ -6,6 +6,9 @@ import { getAliasSlugs } from "../transformers/frontmatter"
 
 export const AliasRedirects: QuartzEmitterPlugin = () => ({
   name: "AliasRedirects",
+  getQuartzComponents() {
+    return []
+  },
   async getDependencyGraph(ctx, content, _resources) {
     const graph = new DepGraph<FilePath>()
 
@@ -19,6 +22,7 @@ export const AliasRedirects: QuartzEmitterPlugin = () => ({
     return graph
   },
   async emit(ctx, content, _resources): Promise<FilePath[]> {
+    const { argv } = ctx
     const fps: FilePath[] = []
 
     for (const [_tree, file] of content) {

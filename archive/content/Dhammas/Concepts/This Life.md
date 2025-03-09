@@ -1,0 +1,4 @@
+---
+aliases:
+  - dittha-dhamma-vedanīya
+---
