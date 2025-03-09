@@ -7,7 +7,7 @@ Hi, there is a lot of stuff on this vault.
 
 This Obsidian Vault aims at storing all information for Dhamma Charts.
 
-First, you should have it download locally from https://github.com/DhammaCharts/dhammas and browse the content folder locally with Obsidian.
+First, you should have it download locally from https://github.com/DhammaCharts/dhammas and browse the content folder locally with Obsidian with the root "content"
 
 You can install dataView plugin to see the result of the tables.
 
