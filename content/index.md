@@ -70,6 +70,17 @@ Format is :
 See Notebook for tentative script of level generated tidy tree or dedrogram.
 
 ## Chart
+
+You can make this kind of chart
+
+![[Pasted image 20250309181038.png]]
+
+Or buddha brain on dhammacharts. 
+
+![[Pasted image 20250309181230.png]]
+
+This would bay one way to do it dependant on the root.
+
 ![[DhammasChart1_13 1.png]]
 ### Notes
 
