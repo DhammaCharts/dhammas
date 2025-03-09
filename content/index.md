@@ -1,8 +1,6 @@
 ---
-title: Dhamma Bible
+title: Home
 ---
-### Home
-
 Hi, there is a lot of stuff on this vault. 
 
 This Obsidian Vault aims at storing all information for Dhamma Charts.
