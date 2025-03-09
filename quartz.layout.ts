@@ -8,7 +8,7 @@ export const sharedPageComponents: SharedLayout = {
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/DhammaCharts/dhammas",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
+      DhammaCharts: "https://www.dhammacharts.org/",
     },
   }),
 }
