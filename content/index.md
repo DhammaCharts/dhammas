@@ -70,10 +70,13 @@ Format is :
 See Notebook for tentative script of level generated tidy tree or dedrogram.
 
 ## Chart
+In obsdician, with the nice tag color, you can get
 
-You can make this kind of chart
+![[Pasted image 20250309181718.png]]
 
-![[Pasted image 20250309181038.png]]
+Or you can make this kind of chart
+
+![[Pasted image 20250309181823.png]]
 
 Or buddha brain on dhammacharts. 
 
